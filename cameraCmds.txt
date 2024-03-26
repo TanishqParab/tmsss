@@ -1,0 +1,10 @@
+// cmds for camera capturing va network
+
+sudo apt update
+sudo apt install ffmpeg vlc
+
+//in laptop
+ffmpeg -f dshow -i video="Lenovo FHD Webcam" -pix_fmt yuv420p -r 30 -f rtsp -rtsp_transport tcp rtsp://192.168.10.5:8554/stream
+
+//in raspberry pi
+cvlc rtsp://192.168.10.5:8554/stream --sout '#rtp{sdp=rtsp://:8554/}' --demux h264
